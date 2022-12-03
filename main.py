@@ -19,6 +19,8 @@ watcher = StoveWatcher(alerter)
 # let the sensor initialize
 time.sleep(.1)
 
+alerter.startup()
+
 # main loop
 while 1:
     # read temperatures
