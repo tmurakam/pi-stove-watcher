@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Stove temperature watcher with thermal sensor
 
 from Adafruit_AMG88xx import Adafruit_AMG88xx

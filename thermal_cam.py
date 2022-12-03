@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from Adafruit_AMG88xx import Adafruit_AMG88xx
 import pygame
 import os
