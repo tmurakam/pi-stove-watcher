@@ -145,7 +145,7 @@ SET_TMP="/tmp"
 
 # Volume for speak commands (a SPEAKVOL of 0 leaves the volume settings untouched)
 #SET_SPEAKVOL="0"
-SET_SPEAKVOL="70"
+SET_SPEAKVOL="40"
 
 # if no current playing volume can be determined, fall back to normal volume
 SET_NORMALVOL="10"
