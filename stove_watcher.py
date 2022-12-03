@@ -2,7 +2,8 @@
 
 import time
 
-HOT_THRESHOLD = 120.0
+THR_H = 120.0
+THR_L = 70.0
 
 ALARM_INTERVAL = 60 * 5
 
@@ -19,7 +20,7 @@ class StoveWatcher:
         max_temp = max(temps)
         print("Temp =", max_temp)
 
-        if max_temp >= HOT_THRESHOLD:
+        if max_temp >= THR_H:
             if not self.is_hot:
                 # Go hot
                 self.is_hot = True
@@ -32,7 +33,7 @@ class StoveWatcher:
                     self.alerter.hot_alarm(now - self.last_hot_trigger)
                     self.last_alarm = now
 
-        else:
+        elif max_temp <= THR_L:
             if self.is_hot:
                 self.is_hot = False
                 self.alerter.go_cold()
