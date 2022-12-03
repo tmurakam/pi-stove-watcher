@@ -2,7 +2,7 @@
 
 import time
 
-THR_H = 105.0
+THR_H = 90.0
 THR_L = 70.0
 
 ALARM_INTERVAL = 60 * 5
