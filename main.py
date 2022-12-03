@@ -4,7 +4,8 @@
 from Adafruit_AMG88xx import Adafruit_AMG88xx
 from thermal_display import ThermalDisplay
 from stove_watcher import StoveWatcher
-from alerter import Alerter
+from alerter_sound import Alerter
+#from alerter_alexa import Alerter
 
 # initialize the sensor
 sensor = Adafruit_AMG88xx(address=0x68)
