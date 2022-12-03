@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/bash
 #
 # Amazon Alexa Remote Control
 #  alex(at)loetzimmer.de
