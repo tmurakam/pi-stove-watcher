@@ -2,9 +2,9 @@
 
 import time
 
-HOT_THRESHOLD = 60.0
-ALARM_INTERVAL = 60 * 5
+HOT_THRESHOLD = 120.0
 
+ALARM_INTERVAL = 60 * 5
 
 class StoveWatcher:
     is_hot = False
