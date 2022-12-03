@@ -7,7 +7,7 @@ from stove_watcher import StoveWatcher
 from alerter import Alerter
 
 # initialize the sensor
-sensor = Adafruit_AMG88xx()
+sensor = Adafruit_AMG88xx(address=0x68)
 
 # initialize
 display = ThermalDisplay()

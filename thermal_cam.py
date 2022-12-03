@@ -14,7 +14,7 @@ from colour import Color
 MIN_TEMP = 26
 
 # high range of the sensor (this will be red on the screen)
-MAX_TEMP = 32
+MAX_TEMP = 80
 
 # how many color values we can have
 COLOR_DEPTH = 1024
@@ -23,14 +23,14 @@ os.putenv('SDL_FBDEV', '/dev/fb1')
 pygame.init()
 
 # initialize the sensor
-sensor = Adafruit_AMG88xx()
+sensor = Adafruit_AMG88xx(address=0x68)
 
 points = [(math.floor(ix / 8), (ix % 8)) for ix in range(0, 64)]
 grid_x, grid_y = np.mgrid[0:7:32j, 0:7:32j]
 
 # sensor is an 8x8 grid so lets do a square
-height = 240
-width = 240
+height = 640
+width = 640
 
 # the list of colors we can choose from
 blue = Color("indigo")
