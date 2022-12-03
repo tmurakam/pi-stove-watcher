@@ -137,7 +137,8 @@ SET_OATHTOOL='/usr/bin/oathtool'
 
 # jq binary
 #SET_JQ='/usr/bin/jq'
-SET_JQ='/usr/local/bin/jq'
+#SET_JQ='/usr/local/bin/jq'
+SET_JQ='jq'
 
 # tmp path
 SET_TMP="/tmp"
