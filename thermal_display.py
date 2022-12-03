@@ -14,7 +14,7 @@ HEIGHT = 640
 MIN_TEMP = 26
 
 # high range of the sensor (this will be red on the screen)
-MAX_TEMP = 32
+MAX_TEMP = 100
 
 # how many color values we can have
 COLOR_DEPTH = 1024
