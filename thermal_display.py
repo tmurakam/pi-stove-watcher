@@ -7,8 +7,8 @@ from scipy.interpolate import griddata
 
 from colour import Color
 
-WIDTH = 240
-HEIGHT = 240
+WIDTH = 640
+HEIGHT = 640
 
 # low range of the sensor (this will be blue on the screen)
 MIN_TEMP = 26
@@ -38,7 +38,7 @@ class ThermalDisplay:
     points = [(math.floor(i / 8), (i % 8)) for i in range(0, 64)]
     grid_x, grid_y = np.mgrid[0:7:32j, 0:7:32j]
 
-    def initialize(self):
+    def __init__(self):
         # the list of colors we can choose from
         colors = list(Color("indigo").range_to(Color("red"), COLOR_DEPTH))
 
@@ -58,7 +58,7 @@ class ThermalDisplay:
 
     def draw(self, temps):
         # temp to pixel
-        pixels = [temp_to_pixels(temps, MIN_TEMP, MAX_TEMP, 0, COLOR_DEPTH - 1) for p in temps]
+        pixels = [temp_to_pixels(p, MIN_TEMP, MAX_TEMP, 0, COLOR_DEPTH - 1) for p in temps]
 
         # perform interpolation
         bicubic = griddata(points=self.points, values=pixels, xi=(self.grid_x, self.grid_y), method='cubic')
