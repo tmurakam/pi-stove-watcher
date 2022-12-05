@@ -11,7 +11,7 @@ WIDTH = 640
 HEIGHT = 640
 
 # low range of the sensor (this will be blue on the screen)
-MIN_TEMP = 26
+MIN_TEMP = 18
 
 # high range of the sensor (this will be red on the screen)
 MAX_TEMP = 100
