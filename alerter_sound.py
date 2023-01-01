@@ -23,17 +23,20 @@ class Alerter:
     def go_hot(self):
         print("==> Got HOT")
         playsound("sound/GoHot.mp3")
-        self.alexa("ガスコンロの温度が上がりました")
+        #self.alexa("ガスコンロの温度が上がりました")
+        self.alexa("点火しました")
         log.info("Got HOT")
 
     def go_cold(self):
         print("==> Be COLD")
         playsound("sound/GoCold.mp3")
-        self.alexa("ガスコンロの温度が下がりました")
+        #self.alexa("ガスコンロの温度が下がりました")
+        self.alexa("火が消えました")
         log.info("Got COLD")
 
     def hot_alarm(self, duration):
         print("==> HOT ALARM:", duration, "sec")
         playsound("sound/HotAlarm.mp3")
-        self.alexa("ガスコンロの温度が上がったままです")
+        #self.alexa("ガスコンロの温度が上がったままです")
+        self.alexa("コンロの温度が上がったままです")
         log.info("Alarm HOT")
