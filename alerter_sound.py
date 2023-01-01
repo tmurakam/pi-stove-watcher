@@ -34,9 +34,8 @@ class Alerter:
         self.alexa("火が消えました")
         log.info("Got COLD")
 
-    def hot_alarm(self, duration):
+    def hot_alarm(self, duration, temp):
         print("==> HOT ALARM:", duration, "sec")
         playsound("sound/HotAlarm.mp3")
-        #self.alexa("ガスコンロの温度が上がったままです")
-        self.alexa("コンロの温度が上がったままです")
+        self.alexa("温度が高い状態で{}分、たちました。温度は{}度です。".format(int(duration / 60), int(temp)))
         log.info("Alarm HOT")

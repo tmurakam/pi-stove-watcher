@@ -39,5 +39,5 @@ class StoveWatcher:
             self.alerter.go_cold()
 
         if self.is_hot and now - self.last_alarm >= ALARM_INTERVAL:
-            self.alerter.hot_alarm(now - self.last_hot_trigger)
+            self.alerter.hot_alarm(now - self.last_hot_trigger, max_temp)
             self.last_alarm = now
