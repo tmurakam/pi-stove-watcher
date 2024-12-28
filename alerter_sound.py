@@ -12,7 +12,8 @@ log = getLogger(__name__)
 
 class Alerter:
     def alexa(self, text):
-        os.system("./alexa_remote_control.sh -d '{}' -e 'speak:{}'".format(DEVICE, text))
+        #os.system("./alexa_remote_control.sh -d '{}' -e 'speak:{}'".format(DEVICE, text))
+        pass
 
     def startup(self):
         print("==> Started")
