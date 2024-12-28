@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # Stove temperature watcher with thermal sensor
+import os
 import time
 import logging
 
@@ -8,6 +9,10 @@ from thermal_display import ThermalDisplay
 from stove_watcher import StoveWatcher
 from alerter_sound import Alerter
 #from alerter_alexa import Alerter
+
+# Change directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(script_dir)
 
 # initialize logging
 formatter = '%(asctime)s : %(message)s'
