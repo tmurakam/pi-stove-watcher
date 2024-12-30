@@ -71,4 +71,6 @@ class ThermalDisplay:
 
         pygame.display.update()
 
+        pygame.image.save(self.lcd, "/tmp/thermal.bmp")
+
         return bicubic
