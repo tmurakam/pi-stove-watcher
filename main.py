@@ -5,7 +5,7 @@ import threading
 import time
 import logging
 
-from flask import Flask, render_template
+from flask import Flask, render_template, send_file
 from Adafruit_AMG88xx import Adafruit_AMG88xx
 from src import *
 
@@ -59,6 +59,10 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def get():
     return render_template('index.html', temp=max_temp)
+
+@app.route('/thermal-image')
+def serve_image():
+    return send_file('/tmp/thermal.bmp', mimetype='image/bmp')
 
 if __name__ == "__main__":
     thread = threading.Thread(target=sensor_task)
