@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # Stove temperature watcher with thermal sensor
 import os
+import threading
 import time
 import logging
 
+from flask import Flask, render_template
 from Adafruit_AMG88xx import Adafruit_AMG88xx
 from src import *
 
@@ -26,17 +28,29 @@ watcher = StoveWatcher(alerter)
 # let the sensor initialize
 time.sleep(.1)
 
-alerter.startup()
+# Create flask server
+app = Flask(__name__)
 
-# main loop
-while 1:
-    # read temperatures
-    temps = sensor.readPixels()
+# Backgroup thread
+def sensor_task():
+    # Ring startup sound
+    alerter.startup()
 
-    # draw
-    display.draw(temps)
+    # main loop
+    while 1:
+        # read temperatures
+        temps = sensor.readPixels()
 
-    # watch
-    watcher.watch(temps)
+        # draw
+        display.draw(temps)
 
-    time.sleep(.5)
+        # watch
+        watcher.watch(temps)
+
+        time.sleep(.5)
+
+if __name__ == "__main__":
+    thread = threading.Thread(target=sensor_task)
+    thread.start()
+
+    app.run(host='0.0.0.0', port=8080)
