@@ -12,6 +12,7 @@ Raspberry Pi + サーマルセンサ(AMG88xx) を使用したガスコンロ監�
 # 必要環境
 
 * Raspberry Pi
+* OS: Raspberry Pi OS: bookworm
 * AGM88xx
 * (Alexa) => 不要
 
@@ -48,3 +49,15 @@ AMG8833 のアドレスは 0x69 にしてあります。変更したいときは
 
 Alexa デバイスの識別子は、`alerter_sound.py` の DEVICE で指定します。
 また喋らせるテキストも本ファイルで定義します。
+
+# 自動起動
+
+Rasberry Pi 起動時に自動起動するためには、~/.config/autostart/stove-watcher.desktop ファイルを以下の内容で作成してください。
+
+```
+[Desktop Entry]
+Exec=lxterminal -e /[path_to_thi_app]/startup.sh
+Type=Application
+Name=stove-watcher
+Terminal=use
+```
