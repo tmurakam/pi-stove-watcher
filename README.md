@@ -16,6 +16,17 @@ Raspberry Pi + サーマルセンサ(AMG88xx) を使用したガスコンロ監�
 * AGM88xx
 * (Alexa) => 不要
 
+# 事前準備
+
+必要なパッケージをインストールしておく
+
+    $ sudo apt install python3-gst-1.0
+
+venv を用意しておく
+
+    $ python3 -m venv ~/.venv/default
+    $ ~/.venv/default/bin/activate
+
 # 使用方法
 
 Raspberry Pi に本アプリを展開します。
