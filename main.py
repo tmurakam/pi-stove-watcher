@@ -5,10 +5,7 @@ import time
 import logging
 
 from Adafruit_AMG88xx import Adafruit_AMG88xx
-from thermal_display import ThermalDisplay
-from stove_watcher import StoveWatcher
-from alerter_sound import Alerter
-#from alerter_alexa import Alerter
+from src import *
 
 # Change directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
