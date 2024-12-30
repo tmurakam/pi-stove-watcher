@@ -25,15 +25,16 @@ display = ThermalDisplay()
 alerter = Alerter()
 watcher = StoveWatcher(alerter)
 
-# let the sensor initialize
-time.sleep(.1)
+# shared variables
+temps = []
+max_temp = 0
 
-# Create flask server
-app = Flask(__name__)
-
-# Backgroup thread
+# Background thread
 def sensor_task():
-    # Ring startup sound
+    # let the sensor initialize
+    time.sleep(.1)
+
+# Ring startup sound
     alerter.startup()
 
     # main loop
@@ -45,9 +46,17 @@ def sensor_task():
         display.draw(temps)
 
         # watch
-        watcher.watch(temps)
+        max_temp = watcher.watch(temps)
 
         time.sleep(.5)
+
+# Create flask server
+app = Flask(__name__)
+
+# API
+@app.route('/', methods=['GET'])
+def get():
+    return render_template('index.html', temp=max_temp)
 
 if __name__ == "__main__":
     thread = threading.Thread(target=sensor_task)
