@@ -64,8 +64,12 @@ def get():
 def serve_image():
     return send_file('/tmp/thermal.bmp', mimetype='image/bmp')
 
+def run_flask():
+    app.run(host='0.0.0.0', port=8080)
+
 if __name__ == "__main__":
-    thread = threading.Thread(target=sensor_task)
+    # Run flask in background thread
+    thread = threading.Thread(target=run_flask, daemon=True)
     thread.start()
 
-    app.run(host='0.0.0.0', port=8080)
+    sensor_task()
