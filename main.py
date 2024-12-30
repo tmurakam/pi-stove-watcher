@@ -36,8 +36,8 @@ def sensor_task():
     # let the sensor initialize
     time.sleep(.1)
 
-# Ring startup sound
-    alerter.startup()
+    # Ring startup sound
+    #alerter.startup()
 
     # main loop
     while 1:
