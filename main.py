@@ -31,6 +31,8 @@ max_temp = 0
 
 # Background thread
 def sensor_task():
+    global temps, max_temp
+
     # let the sensor initialize
     time.sleep(.1)
 
