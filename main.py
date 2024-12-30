@@ -26,12 +26,12 @@ alerter = Alerter()
 watcher = StoveWatcher(alerter)
 
 # shared variables
-temps = []
+bicubic = []
 max_temp = 0
 
 # Background thread
 def sensor_task():
-    global temps, max_temp
+    global bicubic, max_temp
 
     # let the sensor initialize
     time.sleep(.1)
@@ -45,7 +45,7 @@ def sensor_task():
         temps = sensor.readPixels()
 
         # draw
-        display.draw(temps)
+        bicubic = display.draw(temps)
 
         # watch
         max_temp = watcher.watch(temps)

@@ -70,3 +70,5 @@ class ThermalDisplay:
                                   self.displayPixelHeight, self.displayPixelWidth))
 
         pygame.display.update()
+
+        return bicubic
