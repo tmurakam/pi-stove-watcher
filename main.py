@@ -4,9 +4,12 @@ import os
 import threading
 import time
 import logging
+import busio
+import adafruit_amg88xx
+import board
+import itertools
 
 from flask import Flask, render_template, send_file
-from Adafruit_AMG88xx import Adafruit_AMG88xx
 from src import *
 
 # Change directory
@@ -18,7 +21,8 @@ formatter = '%(asctime)s : %(message)s'
 logging.basicConfig(filename="stove_watcher.log", format=formatter, level=logging.INFO, datefmt="%Y/%m/%d %H:%M:%S")
 
 # initialize the sensor
-sensor = Adafruit_AMG88xx(address=0x68)
+i2c_bus = busio.I2C(board.SCL, board.SDA)
+sensor = adafruit_amg88xx.AMG88XX(i2c_bus, addr=0x68)
 
 # initialize
 display = ThermalDisplay()
@@ -41,8 +45,11 @@ def sensor_task():
 
     # main loop
     while 1:
-        # read temperatures
-        temps = sensor.readPixels()
+        # read temperatures (8x8 array)
+        temps2d = sensor.pixels
+
+        # flatten
+        temps = list(itertools.chain.from_iterable(temps2d))
 
         # draw
         bicubic = display.draw(temps)
