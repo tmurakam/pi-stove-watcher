@@ -69,7 +69,7 @@ def get():
 
 @app.route('/thermal-image')
 def serve_image():
-    return send_file('/tmp/thermal.bmp', mimetype='image/bmp')
+    return send_file('/tmp/thermal.png', mimetype='image/png')
 
 def run_flask():
     app.run(host='0.0.0.0', port=8080)

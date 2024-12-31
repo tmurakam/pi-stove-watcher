@@ -7,8 +7,8 @@ from scipy.interpolate import griddata
 
 from colour import Color
 
-WIDTH = 640
-HEIGHT = 640
+WIDTH = 480
+HEIGHT = 480
 
 # low range of the sensor (this will be blue on the screen)
 MIN_TEMP = 18
@@ -31,8 +31,8 @@ def temp_to_pixels(x, in_min, in_max, out_min, out_max):
 
 class ThermalDisplay:
     lcd = None
-    displayPixelWidth = WIDTH / 30
-    displayPixelHeight = HEIGHT / 30
+    displayPixelWidth = WIDTH / 32
+    displayPixelHeight = HEIGHT / 32
     colors = None
 
     points = [(math.floor(i / 8), (i % 8)) for i in range(0, 64)]
@@ -67,10 +67,10 @@ class ThermalDisplay:
             for x, pixel in enumerate(row):
                 pygame.draw.rect(self.lcd, self.colors[constrain(int(pixel), 0, COLOR_DEPTH - 1)],
                                  (self.displayPixelHeight * y, self.displayPixelWidth * x,
-                                  self.displayPixelHeight, self.displayPixelWidth))
+                                  self.displayPixelHeight - 1, self.displayPixelWidth - 1))
 
         pygame.display.update()
 
-        pygame.image.save(self.lcd, "/tmp/thermal.bmp")
+        pygame.image.save(self.lcd, "/tmp/thermal.png")
 
         return bicubic
