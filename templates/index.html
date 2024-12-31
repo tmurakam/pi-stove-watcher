@@ -1,14 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <meta http-equiv="refresh" content="1; URL=">
     <title>Stove Watcher</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        #image {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-温度: {{ temp }}℃
-<br>
-<img src="/thermal-image" style="width: 100%; height: auto;">
+<div id="container">
+    <div>
+        温度: <span id="text">0</span>℃
+    </div>
+    <img id="image" src="">
+</div>
+
+<script>
+    async function updateContent() {
+        try {
+            // Fetch and update text
+            const textResponse = await fetch('/temperature');
+            const text = await textResponse.text();
+            document.getElementById('text').innerText = text;
+
+            // Fetch and update image
+            const timestamp = new Date().getTime();
+            const imageResponse = await fetch(`/thermal-image?ts=${timestamp}`)
+            const imageBlob = await imageResponse.blob();
+            const imageURL = URL.createObjectURL(imageBlob);
+            document.getElementById('image').src = imageURL;
+
+        } catch (error) {
+            console.error('Error updating content:', error);
+        }
+    }
+
+    // Initial content update
+    updateContent();
+
+    // Update content every second
+    setInterval(updateContent, 1000);
+</script>
 </body>
 </html>
+

@@ -70,7 +70,11 @@ app = Flask(__name__)
 # API
 @app.route('/', methods=['GET'])
 def get():
-    return render_template('index.html', temp=max_temp)
+    return render_template('index.html')
+
+@app.route('/temperature', methods=['GET'])
+def temperature():
+    return str(max_temp), 200
 
 @app.route('/thermal-image')
 def serve_image():
