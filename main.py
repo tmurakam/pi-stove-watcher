@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
 # Stove temperature watcher with thermal sensor
-import os
 import threading
-import time
 import logging
-import busio
-import adafruit_amg88xx
-import board
 import itertools
 
 from flask import Flask, render_template, send_file
@@ -20,9 +15,19 @@ os.chdir(script_dir)
 formatter = '%(asctime)s : %(message)s'
 logging.basicConfig(filename="stove_watcher.log", format=formatter, level=logging.INFO, datefmt="%Y/%m/%d %H:%M:%S")
 
-# initialize the sensor
-i2c_bus = busio.I2C(board.SCL, board.SDA)
-sensor = adafruit_amg88xx.AMG88XX(i2c_bus, addr=0x68)
+sensor = None
+
+if os.environ.get("EMULATE_SENSOR") == "1":
+    sensor = DummySensor()
+
+else:
+    import busio
+    import adafruit_amg88xx
+    import board
+
+    # initialize the sensor
+    i2c_bus = busio.I2C(board.SCL, board.SDA)
+    sensor = adafruit_amg88xx.AMG88XX(i2c_bus, addr=0x68)
 
 # initialize
 display = ThermalDisplay()
